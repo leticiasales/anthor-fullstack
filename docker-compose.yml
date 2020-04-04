@@ -9,3 +9,11 @@ services:
       - ./client:/data
     environment:
       - API_URL=http://localhost:8081/
+      
+  db:
+    image: mysql
+    volumes:
+      - ./db:/data/db
+    environment:
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=database
