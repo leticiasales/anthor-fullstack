@@ -1,5 +1,12 @@
 const Movie = require('../models/movie.model');
 
+exports.movie_list = (req, res) => {
+    Movie.find(function (err, movie) {
+        if (err) return next(err);
+        res.send(movie);
+    })
+};
+
 exports.movie_create = function (req, res) {
     let movie = new Movie(
         {
@@ -14,6 +21,27 @@ exports.movie_create = function (req, res) {
         if (err) {
             return console.log(err);
         }
-        res.send('Movie Created successfully')
+        res.send(movie);
+    })
+};
+
+exports.movie_details = function (req, res) {
+    Movie.findById(req.params.id, function (err, movie) {
+        if (err) return next(err);
+        res.send(movie);
+    })
+};
+
+exports.movie_update = function (req, res) {
+    Movie.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, movie) {
+        if (err) return next(err);
+        res.send('Movie udpated.');
+    });
+};
+
+exports.movie_delete = function (req, res) {
+    Movie.findByIdAndRemove(req.params.id, function (err) {
+        if (err) return next(err);
+        res.send('Deleted successfully!');
     })
 };
