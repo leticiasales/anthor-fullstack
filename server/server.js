@@ -15,14 +15,13 @@ app.use('/movies', movie);
 
 // db Setup
 var mongoose = require('mongoose');
-
-mongoose.Promise = global.Promise;
-
 var DATABASE_URL = process.env.DATABASE_URL || 'http://localhost'
 
 // Connecting to the database
 mongoose.connect(`mongodb://root:root@${DATABASE_URL}:27017/data?authSource=admin`, {
     useNewUrlParser: true
+}).catch(err => {
+  console.log('MongoDB connection unsuccessful, will retry.')
 });
 
 var db = mongoose.connection;
