@@ -10,10 +10,24 @@ services:
     environment:
       - API_URL=http://localhost:8081/
       
+  server:
+    build: ./server
+    ports:
+      - 8081:8081
+    volumes:
+      - ./server:/data
+    depends_on: 
+      - db
+    environment:
+      - DATABASE_URL=db
+
   db:
-    image: mysql
+    image: mongo
     volumes:
       - ./db:/data/db
     environment:
-      - MYSQL_PASSWORD=password
-      - MYSQL_DATABASE=database
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: data
+    ports:
+      - 27017:27017
