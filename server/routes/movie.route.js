@@ -1,7 +1,5 @@
 const express = require('express');
 const app = express();
-const router = express.Router();
-
 const movie_controller = require('../controllers/movie.controller');
 
 app.use(function (req, res, next) {
@@ -12,19 +10,19 @@ app.use(function (req, res, next) {
 });
 
 // view
-router.get('/', movie_controller.movie_list);
+app.get('/', movie_controller.movie_list);
 
 // create
-router.post('/', movie_controller.movie_create);
+app.post('/', movie_controller.movie_create);
 
 // show
-router.get('/:id', movie_controller.movie_details);
+app.get('/:id', movie_controller.movie_details);
 
 // update
-router.put('/:id', movie_controller.movie_update);
+app.put('/:id', movie_controller.movie_update);
 
 // delete
-router.delete('/:id', movie_controller.movie_delete);
+app.delete('/:id', movie_controller.movie_delete);
 
 
-module.exports = router;
+module.exports = app;
