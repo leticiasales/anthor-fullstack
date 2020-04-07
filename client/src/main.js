@@ -4,7 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import moment from 'moment'
-import { BootstrapVue } from 'bootstrap-vue'
+import vuetify from '@/plugins/vuetify'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 // Import the styles directly. (Or you could add them via script tags.)
 import 'bootstrap/dist/css/bootstrap.css'
@@ -17,6 +18,7 @@ Vue.filter('formatDate', function (value) {
 })
 
 Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
 
 Vue.config.productionTip = false
 
@@ -25,5 +27,6 @@ new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  vuetify
 })
