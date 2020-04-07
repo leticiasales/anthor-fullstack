@@ -3,13 +3,21 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import moment from 'moment'
 import { BootstrapVue } from 'bootstrap-vue'
 
 // Import the styles directly. (Or you could add them via script tags.)
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+Vue.filter('formatDate', function (value) {
+  if (value) {
+    return moment(String(value)).format('DD/MM/YYYY')
+  }
+})
+
 Vue.use(BootstrapVue)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
