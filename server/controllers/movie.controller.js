@@ -1,6 +1,6 @@
 const Movie = require('../models/movie.model');
 
-exports.movie_list = (req, res) => {
+exports.movie_list = (req, res, next) => {
     Movie.find(function (err, movie) {
         if (err) return next(err);
         res.send(movie);
@@ -8,6 +8,8 @@ exports.movie_list = (req, res) => {
 };
 
 exports.movie_create = function (req, res) {
+    console.log(req.body)
+    console.log('teste lelelleelel')
     let movie = new Movie(
         {
             title: req.body.title,
