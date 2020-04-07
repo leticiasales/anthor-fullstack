@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/components/Login'
 import Dashboard from '@/components/Dashboard'
 import MoviesIndex from '@/components/movies/Index'
 import MoviesShow from '@/components/movies/Show'
@@ -12,7 +11,7 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/dashboard',
+      path: '/',
       name: 'Dashboard',
       component: Dashboard
     },
