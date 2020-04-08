@@ -12,9 +12,9 @@ app.post('/', ActorsController.create);
 app.get('/:id', ActorsController.show);
 
 // update
-//app.put('/:id', ActorsController.update);
+app.put('/:id', ActorsController.update);
 
 // delete
-//app.delete('/:id', ActorsController.delete);
+app.delete('/:id', ActorsController.delete);
 
 module.exports = app;

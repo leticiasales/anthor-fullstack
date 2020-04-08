@@ -2,7 +2,7 @@
   <div class="container-fluid mt-4">
     <h1 class="h1">Movies Manager</h1>
     <b-row>
-      <b-col lg="3">
+      <b-col>
         <b-card :title="(model._id ? 'Edit Movie' : 'New Movie')">
           <form @submit.prevent="save">
             <b-form-group label="Title">

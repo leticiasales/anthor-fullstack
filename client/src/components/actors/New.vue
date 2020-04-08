@@ -2,7 +2,7 @@
   <div class="container-fluid mt-4">
     <h1 class="h1">Actors Manager</h1>
     <b-row>
-      <b-col lg="3">
+      <b-col>
         <b-card :title="(model._id ? 'Edit Actor' : 'New Actor')">
           <form @submit.prevent="save">
             <b-form-group label="Title">

@@ -22,7 +22,7 @@
 
     <v-card-text>
       <b-list-group>
-        <b-list-group-item v-for="actor in movie.actors">{{ actor.name }}</b-list-group-item>
+        <b-list-group-item v-for="actor in movie.actors" :key="_id">{{ actor.name }}</b-list-group-item>
       </b-list-group>
     </v-card-text>
 
