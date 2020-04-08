@@ -7,8 +7,7 @@
         <b-navbar-nav>
           <b-nav-item to="/">Home</b-nav-item>
           <b-nav-item to="/movies">Movies</b-nav-item>
-          <b-nav-item href="/login" @click.prevent="login" v-if="!user">Login</b-nav-item>
-          <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>
+          <b-nav-item to="/actors">Actors</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

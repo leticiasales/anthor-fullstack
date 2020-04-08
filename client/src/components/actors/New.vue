@@ -1,9 +1,9 @@
 <template>
   <div class="container-fluid mt-4">
-    <h1 class="h1">Movies Manager</h1>
+    <h1 class="h1">Actors Manager</h1>
     <b-row>
       <b-col lg="3">
-        <b-card :title="(model._id ? 'Edit Movie' : 'New Movie')">
+        <b-card :title="(model._id ? 'Edit Actor' : 'New Actor')">
           <form @submit.prevent="save">
             <b-form-group label="Title">
               <b-form-input type="text" v-model="model.title"></b-form-input>
@@ -21,11 +21,11 @@
             <b-form-group label="Trailer">
               <b-form-input type="text" v-model="model.trailer"></b-form-input>
             </b-form-group>
-            <b-form-group label="Actors">
+            <b-form-group label="Movies">
               <b-form-select
                 multiple
-                v-model="model.actors"
-                :options="actors"
+                v-model="model.movies"
+                :options="movies"
                 value-field="_id"
                 text-field="name"
               ></b-form-select>
@@ -43,39 +43,39 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'MoviesNew',
+  name: 'ActorsNew',
   components: {},
   data () {
     return {
       loading: false,
       model: {
-        actors: []
+        movies: []
       },
-      actors: []
+      movies: []
     }
   },
   mounted () {
     if (this.$route.params.id) {
       axios
-        .get('http://localhost:8081/movies/' + this.$route.params.id)
+        .get('http://localhost:8081/actors/' + this.$route.params.id)
         .then(response => (this.model = response.data))
         .catch(errors => console.log(errors))
     }
     axios
-      .get('http://localhost:8081/actors/')
-      .then(response => (this.actors = response.data))
+      .get('http://localhost:8081/movies/')
+      .then(response => (this.movies = response.data))
       .catch(errors => console.log(errors))
   },
   methods: {
     save () {
       // Post to server
-      axios.post('http://localhost:8081/movies', this.model).then(res => {
+      axios.post('http://localhost:8081/actors', this.model).then(res => {
         // Post a status message
         this.loading = true
         if (res.status === 200) {
           // now send the user to the next route
           this.$router.push({
-            name: 'Movies'
+            name: 'Actors'
           })
         } else {
           this.status = res.data.message

@@ -1,5 +1,10 @@
 <template>
   <v-container>
+    <b-row>
+      <b-col>
+        <b-link to="new" append>New Movie</b-link>
+      </b-col>
+    </b-row>
     <b-table striped hover :items="movies" :fields="fields" :busy="loading">
       <template v-slot:table-busy>
         <div class="text-center text-danger mt-2">
@@ -15,13 +20,13 @@
      </template>
       <template v-slot:cell(actions)="data">
         <b-row>
-          <b-btn class="mr-1" @click.prevent="showMovie(data.item._id)">
+          <b-btn variant="outline-primary" class="mr-1" @click.prevent="showMovie(data.item._id)">
             <b-icon icon="eye" size="is-small"></b-icon>
           </b-btn>
-          <b-btn class="mr-1" @click.prevent="editMovie(data.item._id)">
+          <b-btn variant="outline-secondary" class="mr-1" @click.prevent="editMovie(data.item._id)">
             <b-icon icon="pencil-square" size="is-small"></b-icon>
           </b-btn>
-          <b-btn @click.prevent="deleteMovie(data.item._id)">
+          <b-btn variant="outline-danger" @click.prevent="deleteMovie(data.item._id)">
             <b-icon icon="trash" size="is-small"></b-icon>
           </b-btn>
         </b-row>

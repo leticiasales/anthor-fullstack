@@ -6,6 +6,9 @@ let MovieSchema = new Schema({
 	release_date: {type: Date, required: true},
 	summarized_plot: {type: String, required: true, max: 300},
 	trailer: {type: String, required: true, max: 100},
+  	actors: [
+    	{ type: mongoose.Schema.Types.ObjectId, ref: 'Actor' }
+	]
 });
 
 // Export the model

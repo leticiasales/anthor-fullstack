@@ -4,6 +4,9 @@ import Dashboard from '@/components/Dashboard'
 import MoviesIndex from '@/components/movies/Index'
 import MoviesShow from '@/components/movies/Show'
 import MoviesNew from '@/components/movies/New'
+import ActorsIndex from '@/components/actors/Index'
+import ActorsShow from '@/components/actors/Show'
+import ActorsNew from '@/components/actors/New'
 
 Vue.use(Router)
 
@@ -12,7 +15,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Dashboard',
+      name: 'dashboard',
       component: Dashboard
     },
     {
@@ -34,6 +37,26 @@ export default new Router({
       path: '/movies/:id',
       name: 'Movie',
       component: MoviesShow
+    },
+    {
+      path: '/actors',
+      name: 'Actors',
+      component: ActorsIndex
+    },
+    {
+      path: '/actors/new',
+      name: 'New Actor',
+      component: ActorsNew
+    },
+    {
+      path: '/actors/:id/edit',
+      name: 'Edit Actor',
+      component: ActorsNew
+    },
+    {
+      path: '/actors/:id',
+      name: 'Actor',
+      component: ActorsShow
     }
   ]
 })

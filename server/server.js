@@ -3,15 +3,25 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 // initialize our express app
-const movie = require('./routes/movie.route'); // Imports routes for the movies
+const movies = require('./routes/movies.route'); // Imports routes for the movies
+const actors = require('./routes/actors.route'); // Imports routes for the actors
 const app = express();
 let port = 8081;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Allow', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 // routes
-app.use('/movies', movie);
+app.use('/movies', movies);
+app.use('/actors', actors);
 
 // db Setup
 var mongoose = require('mongoose');
