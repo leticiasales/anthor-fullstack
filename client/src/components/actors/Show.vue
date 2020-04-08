@@ -6,23 +6,18 @@
   >
     <v-list-item>
       <v-list-item-content>
-        <div class="overline mb-4">MOVIE</div>
+        <div class="overline mb-4">ACTOR</div>
         <div class="d-flex">
           <v-list-item-title class="headline mb-1">
-            {{ actor.title }}
-          </v-list-item-title>
-          <v-spacer></v-spacer>
-          <v-list-item-title class="text-right">
-            {{ actor.release_date | formatDate }}
+            {{ actor.name }}
           </v-list-item-title>
         </div>
-        <v-list-item-subtitle>{{ actor.summarized_plot }}</v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
 
     <v-card-text>
       <b-list-group>
-        <b-list-group-item v-for="movie in actor.movies" :key="_id">{{ movie.title }}</b-list-group-item>
+        <b-list-group-item v-for="movie in actor.movies" :key="movie._id">{{ movie.title }}</b-list-group-item>
       </b-list-group>
     </v-card-text>
 

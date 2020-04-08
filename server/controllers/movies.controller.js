@@ -1,4 +1,4 @@
-const Movie = require('../models/movie.model');
+const { Movie } = require('../models');
 
 const MoviesController = {
   async index(req, res) {
@@ -37,14 +37,19 @@ const MoviesController = {
   async update(req, res) {
     Movie.findByIdAndUpdate(req.params.id, {$set: req.body}, function (err, movie) {
       if (err) return console.log(err);
-      res.send('Movie udpated.');
+      res.send(movie);
     });
   },
 
   async delete(req, res) {
-    Movie.findByIdAndRemove(req.params.id, function (err) {
-      if (err) return console.log(err);
-      res.send('Deleted successfully!');
+    Movie.findByIdAndUpdate(req.params.id, { actors: [] }, function (err, movie) {
+      if (err) return console.log(err)
+      else {
+        Movie.findByIdAndRemove(req.params.id, function (err) {
+          if (err) return console.log(err);
+          res.send('Deleted successfully!');
+        })
+      }
     })
   }
 }

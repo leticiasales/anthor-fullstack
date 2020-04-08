@@ -3,32 +3,10 @@
     <h1 class="h1">Actors Manager</h1>
     <b-row>
       <b-col>
-        <b-card :title="(model._id ? 'Edit Actor' : 'New Actor')">
+        <b-card :name="(model._id ? 'Edit Actor' : 'New Actor')">
           <form @submit.prevent="save">
-            <b-form-group label="Title">
-              <b-form-input type="text" v-model="model.title"></b-form-input>
-            </b-form-group>
-            <b-form-group label="Release date">
-              <b-form-datepicker
-                v-model="model.release_date"
-                :date-format-options="{ year: 'numeric', month: '2-digit', day: '2-digit' }"
-                locale="pt"
-              ></b-form-datepicker>
-            </b-form-group>
-            <b-form-group label="Summarized Plot">
-              <b-form-textarea rows="3" v-model="model.summarized_plot"></b-form-textarea>
-            </b-form-group>
-            <b-form-group label="Trailer">
-              <b-form-input type="text" v-model="model.trailer"></b-form-input>
-            </b-form-group>
-            <b-form-group label="Movies">
-              <b-form-select
-                multiple
-                v-model="model.movies"
-                :options="movies"
-                value-field="_id"
-                text-field="name"
-              ></b-form-select>
+            <b-form-group label="Name">
+              <b-form-input type="text" v-model="model.name"></b-form-input>
             </b-form-group>
             <div>
               <b-btn type="submit">Save</b-btn>
@@ -61,26 +39,44 @@ export default {
         .then(response => (this.model = response.data))
         .catch(errors => console.log(errors))
     }
-    axios
-      .get('http://localhost:8081/movies/')
-      .then(response => (this.movies = response.data))
-      .catch(errors => console.log(errors))
   },
   methods: {
     save () {
-      // Post to server
-      axios.post('http://localhost:8081/actors', this.model).then(res => {
-        // Post a status message
-        this.loading = true
-        if (res.status === 200) {
-          // now send the user to the next route
-          this.$router.push({
-            name: 'Actors'
-          })
-        } else {
-          this.status = res.data.message
-        }
-      })
+      if (this.$route.params.id) {
+        // Post to server
+        axios.put('http://localhost:8081/actors/' + this.$route.params.id, this.model).then(res => {
+          // Post a status message
+          this.loading = true
+          if (res.status === 200) {
+            // now send the user to the next route
+            this.$router.push({
+              name: 'Actor',
+              params: {
+                id: res.data._id
+              }
+            })
+          } else {
+            this.status = res.data.message
+          }
+        })
+      } else {
+        // Post to server
+        axios.post('http://localhost:8081/actors', this.model).then(res => {
+          // Post a status message
+          this.loading = true
+          if (res.status === 200) {
+            // now send the user to the next route
+            this.$router.push({
+              name: 'Actor',
+              params: {
+                id: res.data._id
+              }
+            })
+          } else {
+            this.status = res.data.message
+          }
+        })
+      }
     }
   }
 }

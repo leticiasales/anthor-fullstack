@@ -42,12 +42,7 @@ export default {
     }
   },
   mounted () {
-    axios
-      .get('http://localhost:8081/actors')
-      .then(response => {
-        this.actors = response.data
-        this.loading = false
-      })
+    this.setActors()
   },
   methods: {
     showActor (id) {
@@ -65,11 +60,16 @@ export default {
     deleteActor (id) {
       axios
         .delete('http://localhost:8081/actors/' + id)
-        .then(
-          this.$router.push({
-            name: 'Actors'
-          })
-        )
+        .then(this.setActors())
+    }, 
+    setActors () {
+      this.loading = true
+      axios
+        .get('http://localhost:8081/actors')
+        .then(response => {
+          this.actors = response.data
+          this.loading = false
+        })
     }
   }
 }

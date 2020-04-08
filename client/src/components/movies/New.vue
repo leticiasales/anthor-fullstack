@@ -75,7 +75,8 @@ export default {
         if (res.status === 200) {
           // now send the user to the next route
           this.$router.push({
-            name: 'Movies'
+            name: 'Movie',
+            params: { id: res.data._id }
           })
         } else {
           this.status = res.data.message
