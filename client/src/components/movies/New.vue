@@ -74,14 +74,14 @@ export default {
         .catch(errors => console.log(errors))
     }
 
-    const actors = axios.get('http://localhost:8081/actors/')
-    const genres = axios.get('http://localhost:8081/genres/')
+    axios
+      .get('http://localhost:8081/actors/')
+      .then(response => (this.actors = response.data))
+      .catch(errors => console.log(errors))
 
-    axios.all([actors, genres])
-      .then(axios.spread((respAct, respGen) => {
-        this.actors = respAct.data
-        this.genres = respGen.data
-      }))
+    axios
+      .get('http://localhost:8081/genres/')
+      .then(response => (this.genres = response.data))
       .catch(errors => console.log(errors))
   },
   methods: {

@@ -8,6 +8,7 @@
           <b-nav-item to="/">Home</b-nav-item>
           <b-nav-item to="/movies">Movies</b-nav-item>
           <b-nav-item to="/actors">Actors</b-nav-item>
+          <b-nav-item to="/genres">Genres</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
