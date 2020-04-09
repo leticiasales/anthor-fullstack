@@ -15,6 +15,14 @@
                 locale="pt"
               ></b-form-datepicker>
             </b-form-group>
+            <b-form-group label="Genre">
+              <b-form-select
+                v-model="model.genre"
+                :options="genres"
+                value-field="_id"
+                text-field="name"
+              ></b-form-select>
+            </b-form-group>
             <b-form-group label="Summarized Plot">
               <b-form-textarea rows="3" v-model="model.summarized_plot"></b-form-textarea>
             </b-form-group>
@@ -51,7 +59,8 @@ export default {
       model: {
         actors: []
       },
-      actors: []
+      actors: [],
+      genres: []
     }
   },
   mounted () {
@@ -61,9 +70,16 @@ export default {
         .then(response => (this.model = response.data))
         .catch(errors => console.log(errors))
     }
-    axios
-      .get('http://localhost:8081/actors/')
-      .then(response => (this.actors = response.data))
+
+    const actors = axios.get('http://localhost:8081/actors/')
+    const genres = axios.get('http://localhost:8081/genres/')
+
+    axios.all([actors, genres])
+      .then(axios.spread((respAct, respGen) => {
+        this.actors = respAct.data
+        this.genres = respGen.data
+        console.log(respAct)
+      }))
       .catch(errors => console.log(errors))
   },
   methods: {

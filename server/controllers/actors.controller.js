@@ -1,4 +1,4 @@
-const { Actor, Movie } = require('../models');
+const { Actor } = require('../models');
 
 const ActorsController = {
   async index(req, res) {

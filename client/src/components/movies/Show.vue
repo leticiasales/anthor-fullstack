@@ -6,7 +6,7 @@
   >
     <v-list-item>
       <v-list-item-content>
-        <div class="overline mb-4">MOVIE</div>
+        <div class="overline mb-4 uppercase">{{ movie.genre }} MOVIE</div>
         <div class="d-flex">
           <v-list-item-title class="headline mb-1">
             {{ movie.title }}

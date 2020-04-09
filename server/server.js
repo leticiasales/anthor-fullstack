@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 // initialize our express app
 const movies = require('./routes/movies.route'); // Imports routes for the movies
 const actors = require('./routes/actors.route'); // Imports routes for the actors
+const genres = require('./routes/genres.route'); // Imports routes for the genres
 const app = express();
 let port = 8081;
 
@@ -22,6 +23,7 @@ app.use(function (req, res, next) {
 // routes
 app.use('/movies', movies);
 app.use('/actors', actors);
+app.use('/genres', genres);
 
 // db Setup
 var mongoose = require('mongoose');

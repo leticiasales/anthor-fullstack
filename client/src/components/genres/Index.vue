@@ -2,10 +2,10 @@
   <v-container>
     <b-row>
       <b-col>
-        <b-link to="new" append>New Actor</b-link>
+        <b-link to="new" append>New Genre</b-link>
       </b-col>
     </b-row>
-    <b-table striped hover :items="actors" :fields="fields" :busy="loading">
+    <b-table striped hover :items="genres" :fields="fields" :busy="loading">
       <template v-slot:table-busy>
         <div class="text-center text-danger mt-2">
           <b-spinner class="align-middle"></b-spinner>
@@ -14,13 +14,13 @@
       </template>
       <template v-slot:cell(actions)="data">
         <b-row>
-          <b-btn variant="outline-primary" class="mr-1" @click.prevent="showActor(data.item._id)">
+          <b-btn variant="outline-primary" class="mr-1" @click.prevent="showGenre(data.item._id)">
             <b-icon icon="eye" size="is-small"></b-icon>
           </b-btn>
-          <b-btn variant="outline-secondary" class="mr-1" @click.prevent="editActor(data.item._id)">
+          <b-btn variant="outline-secondary" class="mr-1" @click.prevent="editGenre(data.item._id)">
             <b-icon icon="pencil-square" size="is-small"></b-icon>
           </b-btn>
-          <b-btn variant="outline-danger" @click.prevent="deleteActor(data.item._id)">
+          <b-btn variant="outline-danger" @click.prevent="deleteGenre(data.item._id)">
             <b-icon icon="trash" size="is-small"></b-icon>
           </b-btn>
         </b-row>
@@ -32,42 +32,42 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'ActorsIndex',
+  name: 'GenresIndex',
   components: {},
   data () {
     return {
       loading: true,
       fields: [{ key: 'name' }, { key: 'actions' }],
-      actors: []
+      genres: []
     }
   },
   mounted () {
-    this.setActors()
+    this.setGenres()
   },
   methods: {
-    showActor (id) {
+    showGenre (id) {
       this.$router.push({
-        name: 'Actor',
+        name: 'Genre',
         params: { id: id }
       })
     },
-    editActor (id) {
+    editGenre (id) {
       this.$router.push({
-        name: 'Edit Actor',
+        name: 'Edit Genre',
         params: { id: id }
       })
     },
-    deleteActor (id) {
+    deleteGenre (id) {
       axios
-        .delete('http://localhost:8081/actors/' + id)
-        .then(this.setActors())
+        .delete('http://localhost:8081/genres/' + id)
+        .then(this.setGenres())
     },
-    setActors () {
+    setGenres () {
       this.loading = true
       axios
-        .get('http://localhost:8081/actors')
+        .get('http://localhost:8081/genres')
         .then(response => {
-          this.actors = response.data
+          this.genres = response.data
           this.loading = false
         })
     }

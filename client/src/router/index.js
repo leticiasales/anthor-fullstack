@@ -7,6 +7,9 @@ import MoviesNew from '@/components/movies/New'
 import ActorsIndex from '@/components/actors/Index'
 import ActorsShow from '@/components/actors/Show'
 import ActorsNew from '@/components/actors/New'
+import GenresIndex from '@/components/genres/Index'
+import GenresShow from '@/components/genres/Show'
+import GenresNew from '@/components/genres/New'
 
 Vue.use(Router)
 
@@ -57,6 +60,26 @@ export default new Router({
       path: '/actors/:id',
       name: 'Actor',
       component: ActorsShow
+    },
+    {
+      path: '/genres',
+      name: 'Genres',
+      component: GenresIndex
+    },
+    {
+      path: '/genres/new',
+      name: 'New Genre',
+      component: GenresNew
+    },
+    {
+      path: '/genres/:id/edit',
+      name: 'Edit Genre',
+      component: GenresNew
+    },
+    {
+      path: '/genres/:id',
+      name: 'Genre',
+      component: GenresShow
     }
   ]
 })
