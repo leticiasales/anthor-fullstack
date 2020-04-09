@@ -2,7 +2,7 @@ const { Movie } = require('../models');
 
 const MoviesController = {
   async index(req, res) {
-    Movie.find().populate('actors').exec(function (err, movie) {
+    Movie.find().populate('actors').populate('genre').exec(function (err, movie) {
       if (err) return console.log(err);
       res.send(movie);
     })
@@ -15,7 +15,8 @@ const MoviesController = {
         release_date: req.body.release_date,
         summarized_plot: req.body.summarized_plot,
         trailer: req.body.trailer,
-        actors: req.body.actors
+        actors: req.body.actors,
+        genre: req.body.genre
       }
     );
 
@@ -28,7 +29,7 @@ const MoviesController = {
   },
 
   async show(req, res) {
-    Movie.findById(req.params.id).populate('actors').exec(function (err, movie) {
+    Movie.findById(req.params.id).populate('actors').populate('genre').exec(function (err, movie) {
       if (err) return console.log(err);
       res.send(movie);
     })
