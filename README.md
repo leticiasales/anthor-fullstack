@@ -14,7 +14,11 @@ My major challenge is doing it without mastering the programming language, mainl
 
 #### c. If you had a lot of time to do this, what would you do differently?
 
-For the client, I would create a design system to unify the code and add validations and UX features on forms, like permitting adding a new Actor on creating a Movie. On the server, I would create more automated tests on the backend and also focus on unifying the code.
+For the client, I would create a design system to unify the code and add validations and UX features on forms, like permitting adding a new Actor on creating a Movie or confirming before deletting. On the server, I would create more automated tests on the backend and also focus on unifying the code.
+
+## Known Bugs
+
+- Release date doesn't load on editting movie
 
 ## Running
 
