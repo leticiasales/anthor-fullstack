@@ -18,6 +18,7 @@
     "bootstrap-vue": "^2.10.1",
     "fibers": "^4.0.2",
     "moment": "^2.24.0",
+    "mongoose-seed": "^0.6.0",
     "sass": "^1.26.3",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
