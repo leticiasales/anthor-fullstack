@@ -20,10 +20,14 @@ For the client, I would create a design system to unify the code and add validat
 
 - Release date doesn't load on editting movie
 
-## Running
+## Installation
 
-	$ docker-compose up 
+  $ docker-compose build 
+
+  $ docker-compose run --rm server npm run seed
 
 ### Usage
 
-Go to http://localhost:3000.
+  $ docker-compose up -d 
+
+Go to http://localhost:8080.

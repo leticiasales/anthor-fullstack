@@ -30,7 +30,7 @@ var mongoose = require('mongoose');
 var DATABASE_URL = process.env.DATABASE_URL || 'http://localhost'
 
 // Connecting to the database
-mongoose.connect(`mongodb://root:root@${DATABASE_URL}:27017/data?authSource=admin`, {
+mongoose.connect(`mongodb://${DATABASE_URL}:27017/data`, {
     useNewUrlParser: true
 }).catch(err => {
   console.log('MongoDB connection unsuccessful, will retry.')

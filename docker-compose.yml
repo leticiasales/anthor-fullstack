@@ -25,9 +25,5 @@ services:
     image: mongo
     volumes:
       - ./db:/data/db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
-      MONGO_INITDB_DATABASE: data
     ports:
       - 27017:27017
